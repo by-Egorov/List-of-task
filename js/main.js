@@ -23,6 +23,7 @@ tasksList.addEventListener('click', doneTask)
 function addTask(event) {
 	// Отменяем отправку формы(перезагрузка страницы)
 	event.preventDefault()
+	if (taskInput.value.trim() === '') return
 
 	//Достаем текст задачи из поля ввода
 	const taskText = taskInput.value
