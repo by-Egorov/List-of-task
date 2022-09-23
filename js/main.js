@@ -7,17 +7,17 @@ const removeDoneTasks = document.querySelector('#removeDoneTasks')
 
 let tasks = []
 
+
 if (localStorage.getItem('tasks')) {
 	tasks = JSON.parse(localStorage.getItem('tasks'))
 	tasks.forEach((task) => renderTask(task))
 }
-
 checkEmptyList()
 
 form.addEventListener('submit', addTask)
 tasksList.addEventListener('click', deleteTask)
 tasksList.addEventListener('click', doneTask)
-
+removeDoneTasks.addEventListener('click', removeDoneTask)
 
 // Функции
 function addTask(event) {
@@ -131,6 +131,14 @@ function deleteTask(event) {
 
 }
 
+function removeDoneTask() {
+	const removeTask= tasks.filter((el)=> el.done !== true)
+	tasks = removeTask
+
+	saveToLocalStorage()
+	location.reload()
+}
+
 function checkEmptyList() {
 	if (tasks.length === 0) {
 		const emptyListHTML = `
@@ -173,3 +181,5 @@ function renderTask(task) {
 	//Добавляем задачу на страницу
 	tasksList.insertAdjacentHTML('beforeend', taskHTML)
 }
+
+
