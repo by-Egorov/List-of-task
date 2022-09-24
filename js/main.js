@@ -4,7 +4,7 @@ const taskInput = document.querySelector('#taskInput')
 const tasksList = document.querySelector('#tasksList')
 const emptyList = document.querySelector('#emptyList')
 const removeDoneTasks = document.querySelector('#removeDoneTasks')
-const checkedAllTask = document.querySelector('#checkedAll')
+// const checkedAllTask = document.querySelector('#checkedAll')
 
 let tasks = []
 
@@ -19,7 +19,8 @@ form.addEventListener('submit', addTask)
 tasksList.addEventListener('click', deleteTask)
 tasksList.addEventListener('click', doneTask)
 removeDoneTasks.addEventListener('click', removeDoneTask)
-checkedAllTask.addEventListener('click', chackedAllTasks)
+// checkedAllTask.addEventListener('click', chackedAllTasks)
+
 // Функции
 function addTask(event) {
 	// Отменяем отправку формы(перезагрузка страницы)
@@ -140,14 +141,14 @@ function removeDoneTask() {
 	location.reload()
 }
 
-function chackedAllTasks() {
-	const checkedTask= tasks.filter((el)=> el.done = true)
-	tasks = checkedTask
+// function chackedAllTasks() {
+// 	const checkedTask= tasks.filter((el)=> el.done = true)
+// 	tasks = checkedTask
 
-	saveToLocalStorage()
-	location.reload()
-	console.log(checkedTask)
-}
+// 	saveToLocalStorage()
+// 	location.reload()
+// 	console.log(checkedTask)
+// }
 
 function checkEmptyList() {
 	if (tasks.length === 0) {
