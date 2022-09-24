@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
-	<meta charset="UTF-8"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
-	<link rel="stylesheet" href="css/main.css"/>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/> -->
+	<!-- CSS only -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/main.css" />
 	<link rel="stylesheet" href="css/style.css">
 	<title>ToDo приложение</title>
 </head>
+
 <body>
 
 	<div class="container">
@@ -19,47 +24,40 @@
 		<div class="card mb-4">
 			<ul id="tasksList" class="list-group list-group-flush">
 
-				<!-- <li id="emptyList" class="list-group-item empty-list">
-					<img src="./img/task.svg" alt="Empty" width="48" class="mt-3">
-					<div class="empty-list__title">Список дел пуст</div>
-				</li> -->
-
-				<!-- <li class="list-group-item d-flex justify-content-between task-item">
-					<span class="task-title">Купить молоко</span>
-					<div class="task-item__buttons">
-						<button type="button" data-action="done" class="btn-action">
-							<img src="./img/tick.svg" alt="Done" width="18" height="18">
-						</button>
-						<button type="button" data-action="delete" class="btn-action">
-							<img src="./img/cross.svg" alt="Done" width="18" height="18">
-						</button>
-					</div>
-				</li> -->
-
 			</ul>
 		</div>
 		<!-- //List of tasks -->
 
 		<!-- Form -->
-		<div class="card bg-light" >
+		<div class="card bg-light">
 			<div class="card-header">Добавить новую задачу</div>
 			<div class="card-body">
 				<form id="form">
 					<div class="form-group">
 						<input type="text" class="form-control" id="taskInput" placeholder="Текст задачи" required>
-						<small id="emailHelp" class="form-text text-muted">Что делаем, сколько времени тратим, какой результат получаем.</small>
+						<small id="emailHelp" class="form-text text-muted">Что делаем, сколько времени тратим, какой результат
+							получаем.</small>
 					</div>
 					<button type="submit" class="btn btn-primary  btn-lg active btn btn-info">Добавить</button>
+					<button id="checkedAll" class="btn mt-4 float-right btn-outline-success checkedAllTask">Выполнить
+						все</button>
+					<button id="removeDoneTasks" class="btn mt-4 float-right btn-outline-secondary removeDone">Удалить выполненные
+						задачи</button>
+
 				</form>
 			</div>
 		</div>
 		<!-- //Form  -->
-		<button id="removeDoneTasks" class="btn btn-secondary mt-4 float-right btn-warning removeDone">Удалить выполненные задачи</button>
-		<button id="checkedAll" class="btn btn-secondary mt-4 float-right btn-warning checkedAllTask">Выполнить все</button>
+
 
 	</div>
 
 
 	<script src="js/main.js"></script>
+	<!-- JavaScript Bundle with Popper -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+		crossorigin="anonymous"></script>
 </body>
+
 </html>
