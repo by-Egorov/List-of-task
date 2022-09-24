@@ -4,6 +4,7 @@ const taskInput = document.querySelector('#taskInput')
 const tasksList = document.querySelector('#tasksList')
 const emptyList = document.querySelector('#emptyList')
 const removeDoneTasks = document.querySelector('#removeDoneTasks')
+const focusTask = document.querySelector('.task-item')
 // const checkedAllTask = document.querySelector('#checkedAll')
 
 let tasks = []
@@ -18,6 +19,7 @@ checkEmptyList()
 form.addEventListener('submit', addTask)
 tasksList.addEventListener('click', deleteTask)
 tasksList.addEventListener('click', doneTask)
+tasksList.addEventListener('click', importantTask)
 removeDoneTasks.addEventListener('click', removeDoneTask)
 // checkedAllTask.addEventListener('click', chackedAllTasks)
 
@@ -33,7 +35,8 @@ function addTask(event) {
 	const newTask = {
 		id: Date.now(),
 		text: taskText,
-		done: false
+		done: false,
+		important: false
 	}
 
 	//Добавляем задачу в массив с задачами
@@ -134,7 +137,7 @@ function deleteTask(event) {
 }
 
 function removeDoneTask() {
-	const removeTask= tasks.filter((el)=> el.done !== true)
+	const removeTask = tasks.filter((el) => el.done !== true)
 	tasks = removeTask
 
 	saveToLocalStorage()
@@ -180,17 +183,39 @@ function renderTask(task) {
 	<li id="${task.id}" class="list-group-item d-flex justify-content-between task-item">
 					<span class="${cssClass}">${task.text}</span>
 					<div class="task-item__buttons">
+					<button type="button" data-action="important" class="btn-action btn-important">
+						!
+					</button>
 						<button type="button" data-action="done" class="btn-action">
 							<img src="./img/tick.svg" alt="Done" width="18" height="18">
 						</button>
 						<button type="button" data-action="delete" class="btn-action">
 							<img src="./img/cross.svg" alt="Done" width="18" height="18">
 						</button>
+						
 					</div>
 				</li>
 	`
 	//Добавляем задачу на страницу
 	tasksList.insertAdjacentHTML('beforeend', taskHTML)
 }
+function importantTask(event) {
+	//Проверяем если клик был НЕ по кнопке 'Удалить задачу'
+	if (event.target.dataset.action !== 'important') return
+
+	//Проверяем если клик был по кнопке 'Удалить задачу'
+	const impTask = event.target.closest('.list-group-item')
+
+	//Определяем ID задачи 
+	const id = Number(impTask.id)
+
+	console.log(impTask)
+
+	const taskTitle = impTask.querySelector('.task-title')
+	taskTitle.classList.toggle('important')
+	//Сохраняем список задач в хранилище браузера localStorage
+	saveToLocalStorage()
+}
+
 
 
