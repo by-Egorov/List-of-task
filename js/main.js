@@ -35,8 +35,7 @@ function addTask(event) {
 	const newTask = {
 		id: Date.now(),
 		text: taskText,
-		done: false,
-		important: false
+		done: false
 	}
 
 	//Добавляем задачу в массив с задачами
@@ -95,29 +94,6 @@ function deleteTask(event) {
 	//Определяем ID задачи 
 	const id = Number(parenNode.id)
 
-	//Находим индекс задачи в массиве
-	/**
-	 * Короткая запись
-	 * const index = tasks.findIndex((task) => task.id === id)
-	 */
-
-	/**
-		* const index = tasks.findIndex((task) => {
-	 * if (task.id === id) {
-	 * return true
-	 * }
-	 })
-	*/
-
-	//Удаляем задачу из массива с задачами
-	// tasks.splice(index, 1)
-
-	//Удаляем задачу через фильтрацию массива
-
-	/**
-	 * Короткая запись
-	 * tasks = tasks.filter((task) => task.id !== id)
-	 */
 	tasks = tasks.filter((task) => {
 		if (task.id === id) {
 			return false
@@ -177,11 +153,12 @@ function saveToLocalStorage() {
 function renderTask(task) {
 	//Формируем CSS класс
 	const cssClass = task.done ? 'task-title task-title--done' : 'task-title'
+	const cssClassImportant = task.important ? 'task-title important' : 'task-title'
 
 	// Формируем разметку для новой задачи
 	const taskHTML = `
 	<li id="${task.id}" class="list-group-item d-flex justify-content-between task-item">
-					<span class="${cssClass}">${task.text}</span>
+					<span class="${cssClass} ${cssClassImportant}">${task.text}</span>
 					<div class="task-item__buttons">
 					<button type="button" data-action="important" class="btn-action btn-important">
 						!
@@ -199,23 +176,37 @@ function renderTask(task) {
 	//Добавляем задачу на страницу
 	tasksList.insertAdjacentHTML('beforeend', taskHTML)
 }
+
 function importantTask(event) {
-	//Проверяем если клик был НЕ по кнопке 'Удалить задачу'
+	//Проверяем если клик был НЕ по кнопке 'Задача выполнена'
 	if (event.target.dataset.action !== 'important') return
 
-	//Проверяем если клик был по кнопке 'Удалить задачу'
-	const impTask = event.target.closest('.list-group-item')
+	//Проверяем если клик был по кнопке 'Задача выполнена'
+	const importantTask = event.target.closest('.list-group-item')
 
-	//Определяем ID задачи 
-	const id = Number(impTask.id)
+	//Определяем Id задачи
+	const id = Number(importantTask.id)
 
-	console.log(impTask)
+	//Сокращенная запись 
+	/**
+	 * const task = tasks.find((task) => task.id === id)
+	 */
+	const task = tasks.find((task) => {
+		if (task.id === id) {
+			return true
+		}
+	})
 
-	const taskTitle = impTask.querySelector('.task-title')
-	taskTitle.classList.toggle('important')
+	task.important = !task.important
+
 	//Сохраняем список задач в хранилище браузера localStorage
 	saveToLocalStorage()
+
+	const taskTitle = importantTask.querySelector('.task-title')
+	taskTitle.classList.toggle('important')
 }
+
+
 
 
 
