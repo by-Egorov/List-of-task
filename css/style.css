@@ -7,8 +7,6 @@
 }
 
 .checkedAllTask {
-  position: absolute;
-  top: 100px;
-  right: 165px;
-  margin: 0;
+  margin-right: 24px;
+  border-radius: 8px;
 }

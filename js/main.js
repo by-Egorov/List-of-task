@@ -5,7 +5,7 @@ const tasksList = document.querySelector('#tasksList')
 const emptyList = document.querySelector('#emptyList')
 const removeDoneTasks = document.querySelector('#removeDoneTasks')
 const focusTask = document.querySelector('.task-item')
-// const checkedAllTask = document.querySelector('#checkedAll')
+const checkedAllTask = document.querySelector('#checkedAll')
 
 let tasks = []
 
@@ -21,7 +21,7 @@ tasksList.addEventListener('click', deleteTask)
 tasksList.addEventListener('click', doneTask)
 tasksList.addEventListener('click', importantTask)
 removeDoneTasks.addEventListener('click', removeDoneTask)
-// checkedAllTask.addEventListener('click', chackedAllTasks)
+checkedAllTask.addEventListener('click', chackedAllTasks)
 
 // Функции
 function addTask(event) {
@@ -35,7 +35,8 @@ function addTask(event) {
 	const newTask = {
 		id: Date.now(),
 		text: taskText,
-		done: false
+		done: false,
+		important: false
 	}
 
 	//Добавляем задачу в массив с задачами
@@ -94,6 +95,29 @@ function deleteTask(event) {
 	//Определяем ID задачи 
 	const id = Number(parenNode.id)
 
+	//Находим индекс задачи в массиве
+	/**
+	 * Короткая запись
+	 * const index = tasks.findIndex((task) => task.id === id)
+	 */
+
+	/**
+		* const index = tasks.findIndex((task) => {
+	 * if (task.id === id) {
+	 * return true
+	 * }
+	 })
+	*/
+
+	//Удаляем задачу из массива с задачами
+	// tasks.splice(index, 1)
+
+	//Удаляем задачу через фильтрацию массива
+
+	/**
+	 * Короткая запись
+	 * tasks = tasks.filter((task) => task.id !== id)
+	 */
 	tasks = tasks.filter((task) => {
 		if (task.id === id) {
 			return false
@@ -120,14 +144,14 @@ function removeDoneTask() {
 	location.reload()
 }
 
-// function chackedAllTasks() {
-// 	const checkedTask= tasks.filter((el)=> el.done = true)
-// 	tasks = checkedTask
+function chackedAllTasks() {
+	const checkedTask= tasks.filter((el)=> el.done = true)
+	tasks = checkedTask
 
-// 	saveToLocalStorage()
-// 	location.reload()
-// 	console.log(checkedTask)
-// }
+	saveToLocalStorage()
+	location.reload()
+	console.log(checkedTask)
+}
 
 function checkEmptyList() {
 	if (tasks.length === 0) {
@@ -154,7 +178,6 @@ function renderTask(task) {
 	//Формируем CSS класс
 	const cssClass = task.done ? 'task-title task-title--done' : 'task-title'
 	const cssClassImportant = task.important ? 'task-title important' : 'task-title'
-
 	// Формируем разметку для новой задачи
 	const taskHTML = `
 	<li id="${task.id}" class="list-group-item d-flex justify-content-between task-item">
@@ -176,7 +199,6 @@ function renderTask(task) {
 	//Добавляем задачу на страницу
 	tasksList.insertAdjacentHTML('beforeend', taskHTML)
 }
-
 function importantTask(event) {
 	//Проверяем если клик был НЕ по кнопке 'Задача выполнена'
 	if (event.target.dataset.action !== 'important') return
@@ -205,8 +227,4 @@ function importantTask(event) {
 	const taskTitle = importantTask.querySelector('.task-title')
 	taskTitle.classList.toggle('important')
 }
-
-
-
-
 
