@@ -31,6 +31,7 @@ body {
 }
 .task-item__buttons {
   display: flex;
+  align-items: center;
   column-gap: 5px;
 }
 .notify-holder {
