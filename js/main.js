@@ -1,4 +1,4 @@
-//Находим элементы на странице
+// Находим элементы на странице
 const form = document.querySelector('#form')
 const taskInput = document.querySelector('#taskInput')
 const tasksList = document.querySelector('#tasksList')
@@ -29,7 +29,7 @@ function addTask(event) {
 	event.preventDefault()
 	if (taskInput.value.trim() === '') return
 
-	//Достаем текст задачи из поля ввода
+	// Достаем текст задачи из поля ввода
 	const taskText = taskInput.value
 
 	const newTask = {
@@ -39,16 +39,16 @@ function addTask(event) {
 		important: false
 	}
 
-	//Добавляем задачу в массив с задачами
+	// Добавляем задачу в массив с задачами
 	tasks.push(newTask)
 
-	//Сохраняем список задач в хранилище браузера localStorage
+	// Сохраняем список задач в хранилище браузера localStorage
 	saveToLocalStorage()
 
 	renderTask(newTask)
 
 
-	//Очищаем поле ввода и возвращаем на него фокус
+	// Очищаем поле ввода и возвращаем на него фокус
 	taskInput.value = ''
 	taskInput.focus()
 	checkEmptyList()
@@ -56,19 +56,15 @@ function addTask(event) {
 }
 
 function doneTask(event) {
-	//Проверяем если клик был НЕ по кнопке 'Задача выполнена'
+	// Проверяем если клик был НЕ по кнопке 'Задача выполнена'
 	if (event.target.dataset.action !== 'done') return
 
-	//Проверяем если клик был по кнопке 'Задача выполнена'
+	// Проверяем если клик был по кнопке 'Задача выполнена'
 	const parentNode = event.target.closest('.list-group-item')
 
-	//Определяем Id задачи
+	// Определяем Id задачи
 	const id = Number(parentNode.id)
 
-	//Сокращенная запись 
-	/**
-	 * const task = tasks.find((task) => task.id === id)
-	 */
 	const task = tasks.find((task) => {
 		if (task.id === id) {
 			return true
@@ -77,7 +73,7 @@ function doneTask(event) {
 
 	task.done = !task.done
 
-	//Сохраняем список задач в хранилище браузера localStorage
+	// Сохраняем список задач в хранилище браузера localStorage
 	saveToLocalStorage()
 
 	const taskTitle = parentNode.querySelector('.task-title')
@@ -86,38 +82,15 @@ function doneTask(event) {
 }
 
 function deleteTask(event) {
-	//Проверяем если клик был НЕ по кнопке 'Удалить задачу'
+	// Проверяем если клик был НЕ по кнопке 'Удалить задачу'
 	if (event.target.dataset.action !== 'delete') return
 
-	//Проверяем если клик был по кнопке 'Удалить задачу'
+	// Проверяем если клик был по кнопке 'Удалить задачу'
 	const parenNode = event.target.closest('.list-group-item')
 
-	//Определяем ID задачи 
+	// Определяем ID задачи 
 	const id = Number(parenNode.id)
 
-	//Находим индекс задачи в массиве
-	/**
-	 * Короткая запись
-	 * const index = tasks.findIndex((task) => task.id === id)
-	 */
-
-	/**
-		* const index = tasks.findIndex((task) => {
-	 * if (task.id === id) {
-	 * return true
-	 * }
-	 })
-	*/
-
-	//Удаляем задачу из массива с задачами
-	// tasks.splice(index, 1)
-
-	//Удаляем задачу через фильтрацию массива
-
-	/**
-	 * Короткая запись
-	 * tasks = tasks.filter((task) => task.id !== id)
-	 */
 	tasks = tasks.filter((task) => {
 		if (task.id === id) {
 			return false
@@ -126,10 +99,10 @@ function deleteTask(event) {
 		}
 	})
 
-	//Сохраняем список задач в хранилище браузера localStorage
+	// Сохраняем список задач в хранилище браузера localStorage
 	saveToLocalStorage()
 
-	//Удаляем задачу из разметки
+	// Удаляем задачу из разметки
 	parenNode.remove()
 	checkEmptyList()
 
@@ -145,7 +118,7 @@ function removeDoneTask() {
 }
 
 function chackedAllTasks() {
-	const checkedTask= tasks.filter((el)=> el.done = true)
+	const checkedTask = tasks.filter((el) => el.done = true)
 	tasks = checkedTask
 
 	saveToLocalStorage()
@@ -175,7 +148,7 @@ function saveToLocalStorage() {
 }
 
 function renderTask(task) {
-	//Формируем CSS класс
+	// Формируем CSS класс
 	const cssClass = task.done ? 'task-title task-title--done' : 'task-title'
 	const cssClassImportant = task.important ? 'task-title important' : 'task-title'
 	// Формируем разметку для новой задачи
@@ -196,23 +169,19 @@ function renderTask(task) {
 					</div>
 				</li>
 	`
-	//Добавляем задачу на страницу
+	// Добавляем задачу на страницу
 	tasksList.insertAdjacentHTML('beforeend', taskHTML)
 }
 function importantTask(event) {
-	//Проверяем если клик был НЕ по кнопке 'Задача выполнена'
+	// Проверяем если клик был НЕ по кнопке 'Задача выполнена'
 	if (event.target.dataset.action !== 'important') return
 
-	//Проверяем если клик был по кнопке 'Задача выполнена'
+	// Проверяем если клик был по кнопке 'Задача выполнена'
 	const importantTask = event.target.closest('.list-group-item')
 
-	//Определяем Id задачи
+	// Определяем Id задачи
 	const id = Number(importantTask.id)
 
-	//Сокращенная запись 
-	/**
-	 * const task = tasks.find((task) => task.id === id)
-	 */
 	const task = tasks.find((task) => {
 		if (task.id === id) {
 			return true
@@ -221,7 +190,7 @@ function importantTask(event) {
 
 	task.important = !task.important
 
-	//Сохраняем список задач в хранилище браузера localStorage
+	// Сохраняем список задач в хранилище браузера localStorage
 	saveToLocalStorage()
 
 	const taskTitle = importantTask.querySelector('.task-title')
