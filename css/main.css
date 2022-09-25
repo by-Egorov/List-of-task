@@ -104,3 +104,18 @@ body {
 	font-weight: bold;
 	color: #A40E11;
 }
+.theme {
+	position: absolute;
+	top: 0;
+	right: 19px;
+	padding: 10px;
+	background: transparent;
+	/* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+	border-radius: 10px;
+}
+.theme svg {
+ cursor: pointer;
+}
+.container {
+	position: relative;
+}

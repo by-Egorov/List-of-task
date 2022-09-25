@@ -1,0 +1,42 @@
+body {
+background-color: #222;
+}
+
+.gray {
+  color: #BDBDBD;
+}
+.title {
+	color: #c4c4c4;
+ }
+.task-title--done {
+  color: #CDCDCD;
+}
+
+.empty-list__icon {
+  color: #42BE2A;
+}
+.btn-action {
+	 border: 1px solid rgb(120, 198, 219);
+}
+
+.btn-action:hover {
+	 background-color: #e0e5ea;
+}
+
+.btn-important {
+	color: #A40E11;
+}
+
+.important {
+	color: #A40E11;
+}
+.theme {
+	background: transparent;
+	/* box-shadow: 0 0 10px rgba(255,255,255,0.1); */
+}
+.changeTheme[data-theme="dark"] {
+	display: none;
+}
+.changeTheme[data-theme="light"] {
+	display: block;
+}
