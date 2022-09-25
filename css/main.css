@@ -98,6 +98,9 @@ body {
 .btn-important {
 	color: #A40E11;
 }
+.btn-important path {
+	fill: red;
+}
 .important {
 	font-weight: bold;
 	color: #A40E11;

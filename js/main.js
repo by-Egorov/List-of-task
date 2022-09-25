@@ -184,7 +184,7 @@ function renderTask(task) {
 					<span class="${cssClass} ${cssClassImportant}">${task.text}</span>
 					<div class="task-item__buttons">
 					<button type="button" data-action="important" class="btn-action btn-important">
-						!
+					<img src="./img/iconmonstr-warning-thin.svg" alt="Done" width="18" height="18">
 					</button>
 						<button type="button" data-action="done" class="btn-action">
 							<img src="./img/tick.svg" alt="Done" width="18" height="18">
