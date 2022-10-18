@@ -1,7 +1,7 @@
 const themeSwitchers = document.querySelectorAll('.changeTheme')
 
-themeSwitchers.forEach(switchrer => {
-	switchrer.addEventListener('click', function() {
+themeSwitchers.forEach(switcher => {
+	switcher.addEventListener('click', function() {
 		applyTheme(this.dataset.theme)
 		localStorage.setItem('theme', this.dataset.theme)
 	})
