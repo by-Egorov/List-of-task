@@ -130,9 +130,9 @@ function deleteTask(event) {
 
 function removeDoneTask() {
 	const removeTask = tasks.filter((el) => el.done !== true)
-	tasks = removeTask
-
 	saveToLocalStorage()
+        tasks = removeTask
+
 	//location.reload()
 }
 
