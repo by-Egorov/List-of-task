@@ -22,7 +22,6 @@ function access(elem) {
   elem !== passKey ? denied() : allowed() 
 
 }
-access(password)
 
 let tasks = []
 
@@ -120,6 +119,7 @@ function deleteTask(event) {
 	saveToLocalStorage()
 
 	// Удаляем задачу из разметки
+        access(password)
 	parenNode.remove()
 	checkEmptyList()
 
