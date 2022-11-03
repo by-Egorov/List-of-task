@@ -121,7 +121,7 @@ function deleteTask(event) {
 	saveToLocalStorage()
 
 	// Удаляем задачу из разметки
-        access(password)
+       
 	parenNode.remove()
 	checkEmptyList()
 
