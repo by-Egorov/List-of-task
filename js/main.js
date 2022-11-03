@@ -23,6 +23,8 @@ function access(elem) {
 
 }
 
+access(password)
+
 let tasks = []
 
 
@@ -131,7 +133,7 @@ function removeDoneTask() {
 	tasks = removeTask
 
 	saveToLocalStorage()
-	location.reload()
+	//location.reload()
 }
 
 function chackedAllTasks() {
