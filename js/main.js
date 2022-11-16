@@ -7,23 +7,7 @@ const removeDoneTasks = document.querySelector('#removeDoneTasks')
 const focusTask = document.querySelector('.task-item')
 const checkedAllTask = document.querySelector('#checkedAll')
 
-const password = prompt('Введите пароль')
-passKey = '5295'
 
-function allowed () {
-  alert('пароль верный')
-}
-function denied () {
-  alert('проль не верный')
-  location.reload()
-}
-function access(elem) {
-  
-  elem !== passKey ? denied() : allowed() 
-
-}
-
-access(password)
 
 let tasks = []
 
