@@ -84,15 +84,9 @@ function doneTask(event) {
 }
 
 function deleteTask(event) {
-	// Проверяем если клик был НЕ по кнопке 'Удалить задачу'
 	if (event.target.dataset.action !== 'delete') return
-
-	// Проверяем если клик был по кнопке 'Удалить задачу'
 	const parenNode = event.target.closest('.list-group-item')
-
-	// Определяем ID задачи 
 	const id = Number(parenNode.id)
-
 	tasks = tasks.filter((task) => {
 		if (task.id === id) {
 			return false
@@ -100,22 +94,15 @@ function deleteTask(event) {
 			return true
 		}
 	})
-
-	// Сохраняем список задач в хранилище браузера localStorage
 	saveToLocalStorage()
-
-	// Удаляем задачу из разметки
-       
 	parenNode.remove()
 	checkEmptyList()
-
-
 }
 
 function removeDoneTask() {
 	const removeTask = tasks.filter((el) => el.done !== true)
 	saveToLocalStorage()
-        tasks = removeTask
+	tasks = removeTask
 
 	//location.reload()
 }
